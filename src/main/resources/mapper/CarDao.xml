@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.CarDao">
+
+    <select id="showCar" resultType="com.example.bean.Car">
+        SELECT * FROM car
+        where (IF (#{brand} is not null, brand like CONCAT('%',#{brand},'%'), 1 = 1) and
+               IF (#{price} is not null, price like CONCAT('%',#{price},'%'), 1 = 1) and
+               IF (#{age} is not null, age like CONCAT('%',#{age},'%'), 1 = 1) and
+               IF (#{distance} is not null, distance like CONCAT('%',#{distance},'%'), 1 = 1) and
+               IF (#{type} is not null, type like CONCAT('%',#{type},'%'), 1 = 1)) or
+
+            IF (#{brand} is not null, model like CONCAT('%',#{brand},'%'), 1 = 1) or
+                IF (#{brand} is not null, price like CONCAT('%',#{brand},'%'), 1 = 1) or
+            IF (#{brand} is not null, age like CONCAT('%',#{brand},'%'), 1 = 1) or
+            IF (#{brand} is not null, distance like CONCAT('%',#{brand},'%'), 1 = 1) or
+            IF (#{brand} is not null, type like CONCAT('%',#{brand},'%'), 1 = 1) or
+            IF (#{brand} is not null, other like CONCAT('%',#{brand},'%'), 1 = 1)
+    </select>
+
+
+</mapper>
